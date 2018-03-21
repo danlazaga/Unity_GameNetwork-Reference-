@@ -7,10 +7,10 @@ public class LobbyHUD : MonoBehaviour
 {
 #region Variables
 	[Header("UI REFERENCES")]
-	[SerializeField] RectTransform mainMenu;
-	[SerializeField] RectTransform lobbyMenu;
+	public RectTransform mainMenu;
+	public RectTransform lobbyMenu;
 	[Space(10)]
-	[SerializeField] Button startButton;
+	public Button startButton;
 #endregion
 
 #region Unity Methods
@@ -28,7 +28,7 @@ public class LobbyHUD : MonoBehaviour
 
 #endregion
 
-#region Functions
+#region Callbacks
 	void HandleHostEvent()
 	{
 		startButton.gameObject.SetActive(true);
