@@ -7,6 +7,9 @@ public class PlayerController : NetworkBehaviour {
 
 	public GameObject bulletPrefab;
 	public Transform bulletSpawnPos;
+
+
+
 	// Update is called once per frame
 	void Update () {
 

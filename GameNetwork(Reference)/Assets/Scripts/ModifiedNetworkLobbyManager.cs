@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 {
-	[Header ("LOBBY HUD REFERENCES")]
+	[Header("LOBBY HUD REFERENCES")]
 	[SerializeField] LobbyHUD lobbyHUD;
 
 	[Header("UI REFERENCES")]
@@ -56,11 +56,6 @@ public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 		StartClient();
 	}
 
-	void StartGame()
-	{
-		ServerChangeScene("LobbyScene");
-	}
-
 	public override void OnStartHost()
 	{
 		base.OnStartHost();
@@ -73,5 +68,16 @@ public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 		base.OnStartClient(client);
 
 		Debug.Log("Connected!");
+	}
+
+	void StartGame()
+	{
+		ServerChangeScene("LobbyScene");
+	}
+
+	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+	{
+		var player = (GameObject)GameObject.Instantiate(gamePlayerPrefab, Vector3.zero, Quaternion.identity);
+		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
 }

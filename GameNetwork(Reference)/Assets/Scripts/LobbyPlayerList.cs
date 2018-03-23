@@ -22,6 +22,8 @@ public class LobbyPlayerList : MonoBehaviour
 		_playerList.Add(player);
 
 		player.transform.SetParent(this.transform, false);
+
+
 	}
 
 }
