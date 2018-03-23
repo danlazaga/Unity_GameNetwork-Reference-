@@ -49,6 +49,11 @@ public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 		StartHost();
 	}
 
+	void StartGame()
+	{
+		ServerChangeScene("LobbyScene");
+	}
+
 	void JoinGame(string ipAddressInputField)
 	{
 		networkAddress = ipAddressInputField;
@@ -70,13 +75,10 @@ public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 		Debug.Log("Connected!");
 	}
 
-	void StartGame()
-	{
-		ServerChangeScene("LobbyScene");
-	}
-
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
 	{
+		base.OnServerAddPlayer(conn, playerControllerId);
+
 		var player = (GameObject)GameObject.Instantiate(gamePlayerPrefab, Vector3.zero, Quaternion.identity);
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
