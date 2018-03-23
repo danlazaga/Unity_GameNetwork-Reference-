@@ -572,6 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2020134999}
   lobbyMenu: {fileID: 231511607}
+  ipAddressInputField: {fileID: 739121980}
   startButton: {fileID: 1172413543}
 --- !u!4 &586794733
 Transform:
@@ -1004,8 +1005,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815894687}
-        m_MethodName: OnStartGame
+      - m_Target: {fileID: 586794732}
+        m_MethodName: OnClickStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1130,7 +1131,7 @@ GameObject:
   - component: {fileID: 1312649543}
   - component: {fileID: 1312649542}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start Host Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1194,8 +1195,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815894687}
-        m_MethodName: StartHostModified
+      - m_Target: {fileID: 586794732}
+        m_MethodName: OnClickStartHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1587,7 +1588,7 @@ GameObject:
   - component: {fileID: 1667443171}
   - component: {fileID: 1667443170}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Join Game Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1651,8 +1652,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815894687}
-        m_MethodName: JoinGame
+      - m_Target: {fileID: 586794732}
+        m_MethodName: OnClickJoin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1863,7 +1864,7 @@ MonoBehaviour:
   m_LobbyScene: Main
   m_PlayScene: LobbyScene
   lobbySlots: []
-  ipAddressInputField: {fileID: 739121980}
+  lobbyHUD: {fileID: 586794732}
   colorArray:
   - {r: 0, g: 1, b: 0.2965517, a: 1}
   - {r: 0, g: 1, b: 1, a: 1}

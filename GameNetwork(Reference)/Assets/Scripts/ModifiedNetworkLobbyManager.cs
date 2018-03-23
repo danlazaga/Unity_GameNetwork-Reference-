@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 {
-	public delegate void GameEvent();
-	public event GameEvent invokeHostEvent;
-	public event GameEvent invokeClientEvent;
+	[Header ("LOBBY HUD REFERENCES")]
+	[SerializeField] LobbyHUD lobbyHUD;
 
 	[Header("UI REFERENCES")]
-	public InputField ipAddressInputField;
 	public Color[] colorArray = { Color.red, Color.green };
 	public int currentPlayerColor = 0;
 
@@ -25,41 +23,55 @@ public class ModifiedNetworkLobbyManager : NetworkLobbyManager
 		}
 	}
 
+#region Unity Methods
 	void Awake()
 	{
 		instance = this;
 	}
 
-	public void StartHostModified()
+	void Start()
+	{
+		lobbyHUD.invokeHostEvent += StartHostModified;
+		lobbyHUD.invokeClientEvent += JoinGame;
+		lobbyHUD.invokeStartGame += StartGame;
+	}
+
+	void OnDestroy()
+	{
+		lobbyHUD.invokeHostEvent -= StartHostModified;
+		lobbyHUD.invokeClientEvent -= JoinGame;
+		lobbyHUD.invokeStartGame -= StartGame;
+	}
+#endregion
+
+	void StartHostModified()
 	{
 		StartHost();
+	}
+
+	void JoinGame(string ipAddressInputField)
+	{
+		networkAddress = ipAddressInputField;
+
+		StartClient();
+	}
+
+	void StartGame()
+	{
+		ServerChangeScene("LobbyScene");
 	}
 
 	public override void OnStartHost()
 	{
 		base.OnStartHost();
 
-		if (invokeHostEvent != null) { invokeHostEvent(); }
 		Debug.Log("Host Started!");
-	}
-
-	public void JoinGame()
-	{
-		networkAddress = ipAddressInputField.text;
-
-		StartClient();
 	}
 
 	public override void OnStartClient(NetworkClient client)
 	{
 		base.OnStartClient(client);
 
-		if (invokeClientEvent != null) { invokeClientEvent(); }
 		Debug.Log("Connected!");
-	}
-
-	public void OnStartGame()
-	{
-		ServerChangeScene("LobbyScene");
 	}
 }

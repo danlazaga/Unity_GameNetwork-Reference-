@@ -7,37 +7,44 @@ public class LobbyHUD : MonoBehaviour
 {
 #region Variables
 	[Header("UI REFERENCES")]
-	public RectTransform mainMenu;
-	public RectTransform lobbyMenu;
-	[Space(10)]
-	public Button startButton;
+	[SerializeField] RectTransform mainMenu;
+	[SerializeField] RectTransform lobbyMenu;
+	[SerializeField] InputField ipAddressInputField;
+	[SerializeField] Button startButton;
+
+	public delegate void InvokeHost();
+	public event InvokeHost invokeHostEvent;
+
+	public delegate void InvokeClient(string input);
+	public event InvokeClient invokeClientEvent;
+
+	public delegate void InvokeStartGame();
+	public event InvokeStartGame invokeStartGame;
 #endregion
 
-#region Unity Methods
-	void Start()
+#region Functions
+	public void OnClickStartHost()
 	{
-		ModifiedNetworkLobbyManager.Instance.invokeHostEvent += HandleHostEvent;
-		ModifiedNetworkLobbyManager.Instance.invokeClientEvent += HandleClientEvent;
-	}
-
-	void OnDisable()
-	{
-		ModifiedNetworkLobbyManager.Instance.invokeHostEvent -= HandleHostEvent;
-		ModifiedNetworkLobbyManager.Instance.invokeClientEvent -= HandleClientEvent;
-	}
-
-#endregion
-
-#region Callbacks
-	void HandleHostEvent()
-	{
+		if (invokeHostEvent != null) { invokeHostEvent(); }
 		startButton.gameObject.SetActive(true);
-	}
 
-	void HandleClientEvent()
-	{
 		mainMenu.gameObject.SetActive(false);
 		lobbyMenu.gameObject.SetActive(true);
+	}
+
+	public void OnClickJoin()
+	{
+		if (invokeClientEvent != null) { invokeClientEvent(ipAddressInputField.text); }
+
+		mainMenu.gameObject.SetActive(false);
+		lobbyMenu.gameObject.SetActive(true);
+	}
+
+	public void OnClickStartGame()
+	{
+		if (invokeStartGame != null)invokeStartGame();
+
+		lobbyMenu.gameObject.SetActive(false);
 	}
 #endregion
 }
