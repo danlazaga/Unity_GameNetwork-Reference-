@@ -585,14 +585,15 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2092077559}
+  - {fileID: 873903873}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &484360180
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114598731357380444, guid: 3b1706aacd444a443bd28861f1e3cbd5,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484360177}
   m_Enabled: 1
@@ -831,11 +832,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 873903873}
+  - component: {fileID: 873903877}
   - component: {fileID: 873903876}
   - component: {fileID: 873903875}
   - component: {fileID: 873903874}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: LobbyHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -854,7 +856,7 @@ RectTransform:
   m_Children:
   - {fileID: 25935397}
   - {fileID: 1125864260}
-  m_Father: {fileID: 2092077559}
+  m_Father: {fileID: 484360179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -922,6 +924,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &873903877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 873903872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdc13919d5fb42ccb697c0d49d3396a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyManager: {fileID: 484360178}
+  lobbyPanel: {fileID: 1125864260}
+  ipInput: {fileID: 1634599742}
 --- !u!1 &967120586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1082,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2092077558}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickHost
         m_Mode: 1
         m_Arguments:
@@ -1722,7 +1738,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2092077558}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickJoin
         m_Mode: 1
         m_Arguments:
@@ -1988,50 +2004,3 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084912389}
---- !u!1 &2092077557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1813177271334270, guid: 3b1706aacd444a443bd28861f1e3cbd5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2092077559}
-  - component: {fileID: 2092077558}
-  m_Layer: 0
-  m_Name: LobbyHUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2092077558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114902005816942710, guid: 3b1706aacd444a443bd28861f1e3cbd5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2092077557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cdc13919d5fb42ccb697c0d49d3396a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbyManager: {fileID: 484360178}
-  lobbyPanel: {fileID: 1125864260}
-  ipInput: {fileID: 1634599742}
---- !u!4 &2092077559
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4083109839508188, guid: 3b1706aacd444a443bd28861f1e3cbd5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2092077557}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 512, y: 498, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 873903873}
-  m_Father: {fileID: 484360179}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
