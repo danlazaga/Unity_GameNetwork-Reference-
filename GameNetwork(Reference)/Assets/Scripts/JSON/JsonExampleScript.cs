@@ -7,20 +7,21 @@ using UnityEngine.UI;
 public class JsonExampleScript : MonoBehaviour
 {
 	string jsonString;
+	[SerializeField] Owner owner;
 
 	// Use this for initialization
 	void Start()
 	{
-		jsonString = LoadFile(Application.streamingAssetsPath + "/Data.json");
+		jsonString = LoadFile(Application.streamingAssetsPath + "/data.json");
 
-		Owner owner = JsonUtility.FromJson<Owner>(jsonString);
+		owner = JsonUtility.FromJson<Owner>(jsonString);
 
 		Dictionary<string, object> dic = MiniJSON.Json.Deserialize(jsonString)as Dictionary<string, object>;
 
 		Debug.Log(dic["cars"]);
-		foreach (object item in dic["cars"] as List<object>)
+		foreach (Cars c in owner.cars)
 		{
-			Debug.Log(MiniJSON.Json.Serialize(item));
+			Debug.Log(c.name);
 		}
 
 	}
@@ -75,16 +76,16 @@ public class Owner
 [System.Serializable]
 public class Cars
 {
-	public string brandName;
-	public string[] modelName;
+	public string name;
+	public string[] models;
 
-	public Cars(string brandName, string[] modelName)
+	public Cars(string name, string[] models)
 	{
-		this.brandName = brandName;
+		this.name = name;
 
-		for (int i = 0; i < modelName.Length; i++)
+		for (int i = 0; i < models.Length; i++)
 		{
-			this.modelName[i] = modelName[i];
+			this.models[i] = models[i];
 		}
 	}
 }
