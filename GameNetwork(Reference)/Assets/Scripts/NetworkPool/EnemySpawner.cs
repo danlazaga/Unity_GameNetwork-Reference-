@@ -50,8 +50,6 @@ public class EnemySpawner : NetworkBehaviour
         if (!isServer)
             return;
 
-        Debug.Log("is active");
-
         if (canSpawn)
         {
             spawnRate += Time.deltaTime;
