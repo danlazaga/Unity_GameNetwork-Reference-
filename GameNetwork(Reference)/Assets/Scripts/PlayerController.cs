@@ -10,8 +10,13 @@ public class PlayerController : NetworkBehaviour {
 
 
 
+	private void OnDestroy()
+	{
+		DelegateManager.Instance.toUpdate -= HandleUpdate;
+	}
+
 	// Update is called once per frame
-	void Update () {
+	void HandleUpdate () {
 
 		if (!isLocalPlayer)
 			return;
@@ -32,6 +37,8 @@ public class PlayerController : NetworkBehaviour {
 	public override void OnStartLocalPlayer ()
 	{
 		GetComponent<MeshRenderer> ().material.color = Color.green;
+		DelegateManager.Instance.toUpdate += HandleUpdate;
+		PlayerHUD.Instance.Initialize();
 	}
 
 	[Command]
