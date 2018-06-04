@@ -39,12 +39,14 @@ public class ModifiedNetworkManager : NetworkManager
 	{
 		base.OnStopHost();
 
-		if (stopHost != null) {	stopHost();	}
+		if (stopHost != null) { stopHost(); }
 	}
 
 	public override void OnStopClient()
 	{
 		base.OnStopClient();
+
+		if (stopHost != null) { stopHost(); }
 	}
 
 }

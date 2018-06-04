@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class EnemySpawner : NetworkBehaviour
 {
-    public Transform[] spawnLocations;
     [SerializeField] bool canSpawn = false;
 
     [Header("Spawn Properties")]
@@ -87,48 +86,21 @@ public class EnemySpawner : NetworkBehaviour
         canSpawn = true;
     }
 
-    [SerializeField] EnemyPool enemyPool;
-
     // Spawn Enemy Randomly
 
     void SpawnEnemy()
+    {
+        GameObject obj = EnemyPool.Instance.GetFromPool(RandomizePos());
+        NetworkServer.Spawn(obj, EnemyPool.Instance.assetId);
+    }
+
+    Vector3 RandomizePos()
     {
         var spawnPosition = new Vector3(
             Random.Range(-8.0f, 8.0f),
             0.0f,
             Random.Range(-8.0f, 8.0f));
 
-        GameObject obj = enemyPool.GetFromPool(spawnPosition);
-        NetworkServer.Spawn(obj, enemyPool.assetId);
+        return spawnPosition;
     }
-
-    int RandomizeSpawnSlot()
-    {
-        int slot = Random.Range(0, spawnLocations.Length);
-        return slot;
-    }
-
-#region ShieldEvent
-    public void OnShieldSpawn()
-    {
-        StartCoroutine(SpawnMobs());
-    }
-
-    IEnumerator SpawnMobs()
-    {
-        int wAmount = maxWaveAmount;
-        waveAmount = 0;
-        maxWaveAmount = 15;
-        maxSpawnRate = 1.1f;
-        canSpawn = true;
-
-        yield return new WaitForSeconds(10f);
-
-        maxSpawnRate = 3f;
-        maxWaveAmount = wAmount;
-
-    }
-
-#endregion
-
 }

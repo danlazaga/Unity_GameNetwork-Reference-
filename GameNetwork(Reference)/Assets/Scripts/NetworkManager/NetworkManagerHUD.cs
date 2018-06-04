@@ -10,7 +10,6 @@ public class NetworkManagerHUD : MonoBehaviour
 	ModifiedNetworkManager manager;
 	[SerializeField] GameObject menu;
 	[SerializeField] GameObject connectingPanel;
-	[SerializeField] GameObject ingame;
 	[SerializeField] InputField inputField;
 	[SerializeField] Text ipAddress;
 #endregion
@@ -32,13 +31,13 @@ public class NetworkManagerHUD : MonoBehaviour
 			{
 				menu.SetActive(true);
 				connectingPanel.SetActive(false);
-				ingame.SetActive(false);
+			
 			}
 			else
 			{
 				menu.SetActive(false);
 				connectingPanel.SetActive(true);
-				ingame.SetActive(false);
+	
 				ipAddress.text = "Connecting to " + manager.networkAddress + " : " + manager.networkPort + "..";
 			}
 		}
@@ -47,7 +46,6 @@ public class NetworkManagerHUD : MonoBehaviour
 		{
 			menu.SetActive(false);
 			connectingPanel.SetActive(false);
-			ingame.SetActive(true);
 		}
 	}
 

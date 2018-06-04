@@ -20,22 +20,24 @@ public class Health : NetworkBehaviour
 
 	public override void OnStartClient()
 	{
-		OnChangeHealth(currentHealth);
+		healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
 	}
 
 	public void TakeDamage(int amount)
 	{
-		if (!isServer)
-		{
+		if(!isServer)
 			return;
-		}
+		
 		currentHealth -= amount;
 
 		if (currentHealth <= 0)
 		{
 
 			if (destroyOnDeath)
-				Destroy(this.gameObject);
+			{
+				EnemyPool.Instance.UnSpawnObject(this.gameObject);
+				NetworkServer.UnSpawn(this.gameObject);
+			}
 			else
 			{
 				currentHealth = maxHealth;

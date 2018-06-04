@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DelegateManager : MonoBehaviour {
+public class DelegateManager : MonoBehaviour
+{
 
 	public delegate void ToUpdate();
 	public ToUpdate toUpdate;
 
 	private static DelegateManager instance;
 
-	public static DelegateManager Instance{
-		get{ 
+	public static DelegateManager Instance
+	{
+		get
+		{
 			return instance;
 		}
 	}
@@ -22,7 +25,7 @@ public class DelegateManager : MonoBehaviour {
 
 	void Update()
 	{
-		if(toUpdate != null)toUpdate ();
+		if (toUpdate != null)toUpdate();
 	}
-		
+
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class EnemyPool : MonoBehaviour
+public class BulletPool : MonoBehaviour
 {
-	protected EnemyPool() { }
+	protected BulletPool() { }
 	public const string DefaultRootObjectPoolName = "Pooled Objects";
 	public string rootPoolName = DefaultRootObjectPoolName;
 	public string poolName;
@@ -20,8 +20,8 @@ public class EnemyPool : MonoBehaviour
 	public delegate GameObject SpawnDelegate(Vector3 position, NetworkHash128 assetId);
 	public delegate void UnSpawnDelegate(GameObject spawned);
 
-	static EnemyPool instance;
-	public static EnemyPool Instance { get { return instance; } }
+	static BulletPool instance;
+	public static BulletPool Instance { get { return instance; } }
 
 	private void Awake()
 	{
@@ -58,7 +58,6 @@ public class EnemyPool : MonoBehaviour
 				return obj;
 			}
 		}
-		
 		if (shouldExpand)
 		{
 			return CreateObject(poolName);

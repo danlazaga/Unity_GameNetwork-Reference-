@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Bullet : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class Bullet : MonoBehaviour {
 		if (health != null) {
 			health.TakeDamage (10);
 		}
-		Destroy (this.gameObject);
+
+		BulletPool.Instance.UnSpawnObject(this.gameObject);
+		NetworkServer.UnSpawn(this.gameObject);
 	}
 }
